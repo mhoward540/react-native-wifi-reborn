@@ -3,6 +3,7 @@ declare module 'react-native-wifi-reborn' {
         SSID: string;
         BSSID: string;
         capabilities: string;
+        channelWidth: string;
         frequency: number;
         level: number;
         timestamp: number;
@@ -196,6 +197,7 @@ declare module 'react-native-wifi-reborn' {
         SSID: string;
         BSSID: string;
         capabilities: string;
+        channelWidth: string;
         frequency: number;
         level: number;
         timestamp: number;

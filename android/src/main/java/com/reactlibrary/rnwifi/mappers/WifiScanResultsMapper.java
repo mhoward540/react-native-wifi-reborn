@@ -21,6 +21,26 @@ public class WifiScanResultsMapper {
         return scanResult.SSID;
     }
 
+    private static String channelWidthToString(int channelWidth) {
+        switch (channelWidth) {
+            case ScanResult.CHANNEL_WIDTH_20MHZ:
+                return "CHANNEL_WIDTH_20MHZ";
+            case ScanResult.CHANNEL_WIDTH_40MHZ:
+                return "CHANNEL_WIDTH_40MHZ";
+            case ScanResult.CHANNEL_WIDTH_80MHZ:
+                return "CHANNEL_WIDTH_80MHZ";
+            case ScanResult.CHANNEL_WIDTH_80MHZ_PLUS_MHZ:
+                return "CHANNEL_WIDTH_80MHZ_PLUS_MHZ";
+            case ScanResult.CHANNEL_WIDTH_160MHZ:
+                return "CHANNEL_WIDTH_160MHZ";
+// TODO how to conditionally add this based on API level?
+//            case ScanResult.CHANNEL_WIDTH_320MHZ:
+//                return "CHANNEL_WIDTH_320MHZ";
+            default:
+                return "UNKNOWN";
+        }
+    }
+
     public static WritableArray mapWifiScanResults(final List<ScanResult> scanResults) {
         final WritableArray wifiArray = new WritableNativeArray();
 
@@ -29,6 +49,7 @@ public class WifiScanResultsMapper {
             wifiObject.putString("SSID", parseSSID(result));
             wifiObject.putString("BSSID", result.BSSID);
             wifiObject.putString("capabilities", result.capabilities);
+            wifiObject.putString("channelWidth", channelWidthToString(result.channelWidth));
             wifiObject.putInt("frequency", result.frequency);
             wifiObject.putInt("level", result.level);
             wifiObject.putDouble("timestamp", result.timestamp);
